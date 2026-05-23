@@ -15,8 +15,7 @@ export function RatioTable({ metrics }: RatioTableProps) {
         <span className="text-sm text-white/55">Approximate only</span>
       </div>
       <div className="space-y-3">
-        {metrics.map((metric) => (
-          {
+        {metrics.map((metric) => {
             const gradientId = `ratio-gradient-${metric.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
             return (
@@ -44,8 +43,7 @@ export function RatioTable({ metrics }: RatioTableProps) {
             </svg>
           </div>
             );
-          }
-        ))}
+          })}
       </div>
     </div>
   );

@@ -13,8 +13,7 @@ export function ProgressTimeline() {
         <h3 className="mt-2 font-display text-2xl text-white">Trend over time</h3>
       </div>
       <div className="space-y-4">
-        {progressData.map((item) => (
-          {
+        {progressData.map((item) => {
             const gradientId = `progress-gradient-${item.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
             return (
@@ -36,8 +35,7 @@ export function ProgressTimeline() {
             </svg>
           </div>
             );
-          }
-        ))}
+          })}
       </div>
     </div>
   );
