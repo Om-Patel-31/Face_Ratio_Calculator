@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ScanStatus {
+  queued
+  processing
+  complete
+  failed
+}
+
+model User {
+  id             String           @id @default(cuid())
+  clerkId        String?          @unique
+  email          String?          @unique
+  name           String?
+  avatarUrl      String?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  scans          Scan[]
+  progressEvents ProgressEntry[]
+}
+
+model Scan {
+  id                  String           @id @default(cuid())
+  userId              String?
+  user                User?            @relation(fields: [userId], references: [id])
+  imageUrl            String?
+  previewUrl          String?
+  status              ScanStatus       @default(queued)
+  attractivenessScore Float?
+  symmetryScore       Float?
+  harmonyScore        Float?
+  goldenRatioScore    Float?
+  skinQualityScore    Float?
+  ageEstimate         Int?
+  confidence          Float?
+  notes               String?
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+  metrics             MetricSnapshot[]
+  report              Report?
+}
+
+model MetricSnapshot {
+  id            String   @id @default(cuid())
+  scanId        String
+  scan          Scan     @relation(fields: [scanId], references: [id], onDelete: Cascade)
+  name          String
+  actualValue   Float
+  targetValue   Float
+  score         Float
+  createdAt     DateTime @default(now())
+}
+
+model Report {
+  id              String   @id @default(cuid())
+  scanId          String   @unique
+  scan            Scan     @relation(fields: [scanId], references: [id], onDelete: Cascade)
+  summary         String
+  recommendations Json
+  createdAt       DateTime @default(now())
+}
+
+model ProgressEntry {
+  id          String   @id @default(cuid())
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id])
+  title       String
+  value       Float
+  delta       Float?
+  createdAt   DateTime @default(now())
+}

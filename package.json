@@ -1,0 +1,15 @@
+{
+  "name": "faceratio-ai-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace @faceratio/web",
+    "dev:api": "npm run dev --workspace @faceratio/api",
+    "dev:ml": "uvicorn app.main:app --reload --host 0.0.0.0 --port 8001",
+    "build:web": "npm run build --workspace @faceratio/web",
+    "lint:web": "npm run lint --workspace @faceratio/web"
+  }
+}
