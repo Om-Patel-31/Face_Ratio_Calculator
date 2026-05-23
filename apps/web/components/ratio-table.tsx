@@ -16,6 +16,10 @@ export function RatioTable({ metrics }: RatioTableProps) {
       </div>
       <div className="space-y-3">
         {metrics.map((metric) => (
+          {
+            const gradientId = `ratio-gradient-${metric.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
+            return (
           <div key={metric.name} className="rounded-2xl border border-white/8 bg-white/3 p-4 transition hover:border-white/14 hover:bg-white/[0.06]">
             <div className="flex items-center justify-between gap-3">
               <div>
@@ -29,9 +33,9 @@ export function RatioTable({ metrics }: RatioTableProps) {
             </div>
             <svg viewBox="0 0 100 8" className="mt-3 h-2 w-full overflow-hidden rounded-full bg-white/6">
               <rect x="0" y="0" width="100" height="8" rx="4" fill="rgba(255,255,255,0.04)" />
-              <rect x="0" y="0" width={Math.max(8, metric.score)}" height="8" rx="4" fill="url(#ratioGradient)" />
+              <rect x="0" y="0" width={Math.max(8, metric.score)} height="8" rx="4" fill={`url(#${gradientId})`} />
               <defs>
-                <linearGradient id="ratioGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#43f0d1" />
                   <stop offset="55%" stopColor="#7ee6ff" />
                   <stop offset="100%" stopColor="#e8c766" />
@@ -39,6 +43,8 @@ export function RatioTable({ metrics }: RatioTableProps) {
               </defs>
             </svg>
           </div>
+            );
+          }
         ))}
       </div>
     </div>

@@ -14,6 +14,10 @@ export function ProgressTimeline() {
       </div>
       <div className="space-y-4">
         {progressData.map((item) => (
+          {
+            const gradientId = `progress-gradient-${item.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
+            return (
           <div key={item.label}>
             <div className="mb-2 flex items-center justify-between text-sm">
               <span className="text-white/80">{item.label}</span>
@@ -21,9 +25,9 @@ export function ProgressTimeline() {
             </div>
             <svg viewBox="0 0 100 12" className="h-3 w-full overflow-hidden rounded-full bg-white/6">
               <rect x="0" y="0" width="100" height="12" rx="6" fill="rgba(255,255,255,0.04)" />
-              <rect x="0" y="0" width={item.value} height="12" rx="6" fill="url(#progressGradient)" />
+              <rect x="0" y="0" width={item.value} height="12" rx="6" fill={`url(#${gradientId})`} />
               <defs>
-                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#43f0d1" />
                   <stop offset="60%" stopColor="#7ee6ff" />
                   <stop offset="100%" stopColor="#e8c766" />
@@ -31,6 +35,8 @@ export function ProgressTimeline() {
               </defs>
             </svg>
           </div>
+            );
+          }
         ))}
       </div>
     </div>

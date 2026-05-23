@@ -24,21 +24,21 @@ export function ScanPreview({ label, accent = "aurora" }: ScanPreviewProps) {
         <div className="absolute left-1/2 top-[49%] h-20 w-[30%] -translate-x-1/2 rounded-[50%] border border-white/10 bg-white/[0.03]" />
         <div className="absolute left-1/2 top-[66%] h-7 w-[26%] -translate-x-1/2 rounded-[100%] border border-aurora-400/30 bg-gradient-to-r from-aurora-400/12 via-white/5 to-gold-400/12" />
         {[
-          ["left-[48%] top-[37%]"],
-          ["left-[57%] top-[37%]"],
-          ["left-[42%] top-[53%]"],
-          ["left-[62%] top-[53%]"],
-          ["left-[50%] top-[44%]"],
-          ["left-[50%] top-[56%]"],
-          ["left-[44%] top-[69%]"],
-          ["left-[56%] top-[69%]"],
-          ["left-[38%] top-[51%]"],
-          ["left-[66%] top-[51%]"],
-          ["left-[30%] top-[74%]"],
-          ["left-[70%] top-[74%]"]
-        ].map(([position], index) => (
+          "left-[48%] top-[37%]",
+          "left-[57%] top-[37%]",
+          "left-[42%] top-[53%]",
+          "left-[62%] top-[53%]",
+          "left-[50%] top-[44%]",
+          "left-[50%] top-[56%]",
+          "left-[44%] top-[69%]",
+          "left-[56%] top-[69%]",
+          "left-[38%] top-[51%]",
+          "left-[66%] top-[51%]",
+          "left-[30%] top-[74%]",
+          "left-[70%] top-[74%]"
+        ].map((position, index) => (
           <span
-            key={`${x}-${y}`}
+            key={index}
             className={`absolute h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/80 bg-aurora-400 shadow-[0_0_14px_rgba(67,240,209,0.85)] ${position}`}
           />
         ))}
